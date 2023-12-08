@@ -1,0 +1,66 @@
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /data/trabajo_final/catkin_ws_evs/src/EVS_SLAM/Thirdparty/DBoW2/build/CMakeFiles/CMakeScratch/TryCompile-5MMxgv
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_10164/fast && /usr/bin/make  -f CMakeFiles/cmTC_10164.dir/build.make CMakeFiles/cmTC_10164.dir/build
+make[1]: Entering directory '/data/trabajo_final/catkin_ws_evs/src/EVS_SLAM/Thirdparty/DBoW2/build/CMakeFiles/CMakeScratch/TryCompile-5MMxgv'
+Building C object CMakeFiles/cmTC_10164.dir/src.c.o
+/usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD  -fPIC  -o CMakeFiles/cmTC_10164.dir/src.c.o -c /data/trabajo_final/catkin_ws_evs/src/EVS_SLAM/Thirdparty/DBoW2/build/CMakeFiles/CMakeScratch/TryCompile-5MMxgv/src.c
+Linking C executable cmTC_10164
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_10164.dir/link.txt --verbose=1
+/usr/bin/cc -fPIC  -rdynamic CMakeFiles/cmTC_10164.dir/src.c.o -o cmTC_10164 
+CMakeFiles/cmTC_10164.dir/src.c.o: In function `main':
+src.c:(.text+0x3e): undefined reference to `pthread_create'
+src.c:(.text+0x4a): undefined reference to `pthread_detach'
+src.c:(.text+0x56): undefined reference to `pthread_cancel'
+src.c:(.text+0x67): undefined reference to `pthread_join'
+src.c:(.text+0x7b): undefined reference to `pthread_atfork'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_10164.dir/build.make:98: recipe for target 'cmTC_10164' failed
+make[1]: *** [cmTC_10164] Error 1
+make[1]: Leaving directory '/data/trabajo_final/catkin_ws_evs/src/EVS_SLAM/Thirdparty/DBoW2/build/CMakeFiles/CMakeScratch/TryCompile-5MMxgv'
+Makefile:127: recipe for target 'cmTC_10164/fast' failed
+make: *** [cmTC_10164/fast] Error 2
+
+
+Source file was:
+#include <pthread.h>
+
+static void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_cancel(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /data/trabajo_final/catkin_ws_evs/src/EVS_SLAM/Thirdparty/DBoW2/build/CMakeFiles/CMakeScratch/TryCompile-BLTWms
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_0feb0/fast && /usr/bin/make  -f CMakeFiles/cmTC_0feb0.dir/build.make CMakeFiles/cmTC_0feb0.dir/build
+make[1]: Entering directory '/data/trabajo_final/catkin_ws_evs/src/EVS_SLAM/Thirdparty/DBoW2/build/CMakeFiles/CMakeScratch/TryCompile-BLTWms'
+Building C object CMakeFiles/cmTC_0feb0.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create -o CMakeFiles/cmTC_0feb0.dir/CheckFunctionExists.c.o -c /data/trabajo_final/catkin_ws_evs/src/EVS_SLAM/Thirdparty/DBoW2/build/CMakeFiles/CMakeScratch/TryCompile-BLTWms/CheckFunctionExists.c
+Linking C executable cmTC_0feb0
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0feb0.dir/link.txt --verbose=1
+/usr/bin/cc -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create -rdynamic CMakeFiles/cmTC_0feb0.dir/CheckFunctionExists.c.o -o cmTC_0feb0  -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_0feb0.dir/build.make:98: recipe for target 'cmTC_0feb0' failed
+make[1]: *** [cmTC_0feb0] Error 1
+make[1]: Leaving directory '/data/trabajo_final/catkin_ws_evs/src/EVS_SLAM/Thirdparty/DBoW2/build/CMakeFiles/CMakeScratch/TryCompile-BLTWms'
+Makefile:127: recipe for target 'cmTC_0feb0/fast' failed
+make: *** [cmTC_0feb0/fast] Error 2
+
+
+
