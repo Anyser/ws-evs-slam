@@ -1,6 +1,6 @@
 # EVS-SLAM
 
-Código de EVS-SLAM para aplicaciones de vehículos autónomos para ambientes dinamicos, basado en ORBSLAM2 y optimizado para NVIDIA Jetson. Licencia GPL para uso y contribución abierta
+Código EVS-SLAM para aplicaciones de vehículos autónomos en ambientes dinamicos, basado en DeepLabv3 y ORBSLAM2, optimizado para NVIDIA Jetson. Licencia GPL para uso y contribución abierta
 
 ## Instalación :wrench:  
 
@@ -23,12 +23,12 @@ Este proyecto requiere una configuración de hardware y software para su correct
 
 #### OpenCV 3.4.3:
 
-1. Desinstala la versión existente de OpenCV en la Jetson.
+1. Desinstala la versión existente de OpenCV en la Jetson o equipo.
 2. Construye e instala OpenCV 3.4
 
 >[!NOTE]
 >Verifica que la instalación trabaje adecuadamente con CUDA 10.2
->puedes verificarlo con `jtop` para eso sigue https://github.com/rbonghi/jetson_stats
+>puedes verificarlo en la Jetson con `jtop` para eso sigue https://github.com/rbonghi/jetson_stats
 
 
 #### SDK para la Cámara ZEDM:
@@ -70,6 +70,10 @@ source install/setup.bash --extend
 #### Compilación de seg_msg_ros:
 1. Compila el paquete seg_msg_ros para la red de segmentación y publicación de imágenes en ROS.
 
+2. Descargar los pesos de los modelos en https://drive.google.com/drive/folders/1Bf42Kbe-_AfrM0srMY7tZdCUDjqyx96-?usp=sharing
+
+3. Modificar su ruta en el archivo _init_.py 
+
 ```console
 catkin build seg_msg_ros
 ```
@@ -79,7 +83,7 @@ roscore
 ```
 in other console
 ```console
-/usr/bin/python3 /PATH/TO/YOUR/CATKIN_WS/src/seg_msg_ros/scripts/segmentacion/zedm_stereo_pub_net.py
+/usr/bin/python3 /PATH/TO/YOUR/CATKIN_WS/src/seg_msg_ros/scripts/segmentacion/zedm_(stereo or rgbd)_pub_net.py
 ```
 
 #### Instalación de EVS_SLAM :camera: :
@@ -97,6 +101,9 @@ in other console
 ```console
 export ROS_PACKAGE_PATH=${ROS_PACKAGE_PATH}:/PATH/TO/CATKIN_WS/src/EVS_SLAM/Examples/ROS
 ```
+
+4. Descarga el vocabulario y agregalo a Vocabulary 
+
 after
 
 ```console
@@ -105,7 +112,7 @@ after
 4. comprueba que el codigo generado se suscriba y trabaje el VSLAM, la variable `True o False` es para el mapeo o no de los puntos dinamicos:
 
 ```console
-./ros_stereo_zed /home/lapyr/catkin_ws_slam/src/ORB_SLAM2/Vocabulary/ORBvoc.txt /home/lapyr/catkin_ws_slam/src/ORB_SLAM2_WOD/Examples/RGB-D/ZEDM_H.yaml True
+./ros_stereo_zed /PATH/TO/CATKIN_WS/src/ORB_SLAM2/Vocabulary/ORBvoc.txt /home/lapyr/catkin_ws_slam/src/ORB_SLAM2_WOD/Examples/RGB-D/ZEDM_H.yaml True
 ```
 
 ## Referencias
