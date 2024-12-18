@@ -118,8 +118,6 @@ after
 ## Referencias
 Si este código te resulta útil, por favor considera citar nuestro trabajo de manera adecuada. ¡Gracias por tu apoyo! :smile:
 
-## Contacto
 
-* luisandresmj@gmail.com
 
 
