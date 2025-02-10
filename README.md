@@ -1,4 +1,4 @@
-# EVS-SLAM
+# EVS-SLAM 
 
 Código EVS-SLAM para aplicaciones de vehículos autónomos en ambientes dinamicos, basado en DeepLabv3 y ORBSLAM2, optimizado para NVIDIA Jetson. Licencia GPL para uso y contribución abierta
 
